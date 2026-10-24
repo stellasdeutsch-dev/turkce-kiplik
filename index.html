@@ -35,7 +35,7 @@
 html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--sans);font-variant-numeric:lining-nums;overflow-x:hidden;-webkit-font-smoothing:antialiased}
 img,video{max-width:100%;display:block}
-main{overflow-x:clip}
+main{overflow-x:clip;position:relative;z-index:1}
 a{color:inherit}button{font:inherit;color:inherit}
 .wrap{max-width:1140px;margin:0 auto;padding:0 16px;position:relative}
 section{padding:72px 0;position:relative}
@@ -87,8 +87,46 @@ html.gs .rv{transition:none}
 .hcard{position:relative;background:linear-gradient(180deg,#fff,#F3F3EF);border-radius:30px;box-shadow:var(--sh);overflow:hidden;padding:30px 18px 26px;min-height:640px}
 .word{position:relative;z-index:1;font-family:var(--serif);font-weight:500;color:#3C3B52;font-size:clamp(78px,24vw,230px);line-height:.85;letter-spacing:-.02em;text-align:center;margin:8px 0 0;white-space:nowrap}
 .word .w2{display:inline-block}
-.watch{display:block;position:relative;z-index:2;width:min(64vw,300px);margin:-18vw auto 0;filter:drop-shadow(0 26px 30px rgba(0,0,0,.18))}
-@media(min-width:900px){.watch{margin-top:-150px}}
+.watchwrap{position:relative;z-index:2;width:min(64vw,300px);margin:-18vw auto 0}
+@media(min-width:900px){.watchwrap{margin-top:-150px}}
+.watch{display:block;width:100%;filter:drop-shadow(0 26px 30px rgba(0,0,0,.18))}
+.orbit{position:absolute;inset:-10% -14% -4%;pointer-events:none;z-index:3}
+.orbit span{position:absolute;font:700 12px var(--sans);letter-spacing:-.01em;padding:6px 11px;border-radius:999px;background:#fff;box-shadow:0 10px 20px -12px rgba(0,0,0,.45);white-space:nowrap}
+.orbit span:nth-child(1){color:var(--green-d)}.orbit span:nth-child(2){color:#D2452C}.orbit span:nth-child(3){color:var(--brown2)}.orbit span:nth-child(4){color:var(--blue-d)}.orbit span:nth-child(5){color:var(--orange)}
+/* falling leaves */
+.fall{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.fall svg{position:absolute;top:-40px;width:30px;height:15px;opacity:.5}
+/* story illustrations */
+.ill{display:block;width:100%;height:auto;aspect-ratio:240/84;background:linear-gradient(180deg,#F5F5F1,#ECECE5);border-radius:16px;margin-bottom:12px}
+@media(min-width:900px){.ill{aspect-ratio:auto;height:140px}.story>.brownp{position:sticky;top:84px}}
+/* factory */
+.fac{background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:26px 16px 20px;margin-top:22px;overflow:hidden;position:relative}
+.fac-stage{position:relative;min-height:120px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px}
+.fac-word{display:flex;justify-content:center;align-items:flex-end;flex-wrap:wrap;gap:4px;min-height:74px}
+.blk{display:inline-flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:600;font-size:clamp(30px,8.6vw,56px);line-height:1;padding:.12em .28em .18em;border-radius:12px;box-shadow:0 10px 18px -12px rgba(0,0,0,.4)}
+.blk.st{background:#fff;box-shadow:inset 0 0 0 2px var(--ink),0 10px 18px -12px rgba(0,0,0,.4)}
+.blk.sf{background:var(--green);color:#fff}.blk.ps{background:var(--cream);color:var(--brown2)}.blk.lz{background:#DCEBF2;color:var(--blue-d)}
+.belt{height:16px;border-radius:999px;background:repeating-linear-gradient(90deg,#D9D9D3 0 14px,#ECECE7 14px 28px);box-shadow:inset 0 2px 4px rgba(0,0,0,.12)}
+.belt.run{animation:belt .45s linear infinite}
+@keyframes belt{to{background-position:-28px 0}}
+.fac-ru{text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(20px,5.4vw,28px);margin:16px 0 4px;min-height:1.3em}
+/* chat */
+.chat{display:grid;gap:16px;max-width:760px;margin:24px auto 0;background:#fff;border-radius:var(--r);box-shadow:var(--sh);padding:22px 16px}
+@media(min-width:760px){.chat{grid-template-columns:150px 1fr;align-items:center;padding:28px}}
+.face{text-align:center}
+.face svg{width:120px;height:120px;display:block;margin:0 auto}
+.face b{font-family:var(--serif);font-size:22px;font-weight:600}
+.msgs{display:flex;flex-direction:column;gap:8px}
+.bub{max-width:88%;padding:11px 14px;border-radius:18px;font-size:15px;font-weight:600;line-height:1.35}
+.bub small{display:block;font-weight:500;font-size:12.5px;opacity:.75;margin-top:2px}
+.bub.their{background:var(--bg);border-bottom-left-radius:6px;align-self:flex-start}
+.bub.mine{background:var(--green);color:#fff;border-bottom-right-radius:6px;align-self:flex-end}
+.bub.ghost{visibility:hidden}
+.ans{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+@media(min-width:760px){.ans{grid-column:1/-1}}
+.ans .btn{padding:14px 18px}
+/* lock in gauge */
+.gauge .pct .lock{display:block;width:30px;height:34px;margin:0 auto 6px;color:var(--green);transition:color .5s}
 .watch .hand{transform-origin:100px 118px}
 .tagline{position:relative;z-index:3;font-family:var(--serif);font-style:italic;font-size:clamp(28px,7.6vw,46px);text-align:center;margin:-6px 0 16px;color:#3C3B52}
 .hgrid{position:relative;z-index:3;display:grid;gap:18px}
@@ -145,7 +183,7 @@ html.gs .rv{transition:none}
 .mod li::before{content:'';width:16px;height:1px;background:#cfd8cf;margin-top:10px;flex:none}
 .mod li b{color:var(--ink);font-weight:600}
 /* tariffs = modalities */
-.tariffs{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px 16px 24px;margin:0 -16px;scrollbar-width:none}
+.tariffs{perspective:1200px;display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:30px 16px 24px;margin:0 -16px;scrollbar-width:none}
 .tariffs::-webkit-scrollbar{display:none}
 @media(min-width:1100px){.tariffs{display:grid;grid-template-columns:repeat(5,1fr);overflow:visible;margin:0;padding:30px 0 10px}}
 .tf{flex:none;width:min(82vw,300px);scroll-snap-align:center;background:#fff;border-radius:24px;box-shadow:var(--sh);padding:30px 18px 18px;position:relative;display:flex;flex-direction:column}
@@ -367,7 +405,7 @@ html.gs .rv{transition:none}
 .final{text-align:center}
 .final .h1{font-size:clamp(54px,15vw,120px)}
 .final .ru{font-family:var(--serif);font-style:italic;font-size:clamp(26px,7vw,40px);margin:0 0 22px;color:var(--mute)}
-.foot{background:#121212;color:#fff;border-radius:28px 28px 0 0;padding:26px 0 120px;margin-top:20px}
+.foot{position:relative;z-index:1;background:#121212;color:#fff;border-radius:28px 28px 0 0;padding:26px 0 120px;margin-top:20px}
 .foot .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .foot .brand small{color:#888}
 .foot .ticon{background:#222;color:#fff;box-shadow:none}
@@ -426,6 +464,7 @@ html.gs .rv{transition:none}
   <symbol id="sprig" viewBox="0 0 80 120"><path d="M40 118C40 80 42 40 38 4" stroke="#3F7D33" stroke-width="3" fill="none"/><g fill="#4E9A3E"><ellipse cx="30" cy="24" rx="12" ry="6" transform="rotate(-30 30 24)"/><ellipse cx="50" cy="34" rx="12" ry="6" transform="rotate(30 50 34)"/><ellipse cx="29" cy="50" rx="13" ry="6" transform="rotate(-30 29 50)"/><ellipse cx="52" cy="62" rx="13" ry="6" transform="rotate(30 52 62)"/><ellipse cx="28" cy="78" rx="13" ry="6" transform="rotate(-30 28 78)"/><ellipse cx="53" cy="90" rx="12" ry="6" transform="rotate(30 53 90)"/></g></symbol>
   <symbol id="wheat" viewBox="0 0 40 140"><path d="M20 138V40" stroke="#D9A85A" stroke-width="2.4"/><g fill="#E7B865"><ellipse cx="14" cy="20" rx="5" ry="10" transform="rotate(-20 14 20)"/><ellipse cx="26" cy="22" rx="5" ry="10" transform="rotate(20 26 22)"/><ellipse cx="14" cy="38" rx="5" ry="10" transform="rotate(-20 14 38)"/><ellipse cx="26" cy="40" rx="5" ry="10" transform="rotate(20 26 40)"/><ellipse cx="14" cy="56" rx="5" ry="10" transform="rotate(-20 14 56)"/><ellipse cx="26" cy="58" rx="5" ry="10" transform="rotate(20 26 58)"/><ellipse cx="20" cy="8" rx="4.5" ry="9"/></g></symbol>
 </svg>
+<div class="fall" id="fall" aria-hidden="true"></div>
 <div class="prog" id="prog"></div>
 <header class="top"><div class="wrap">
   <a class="brand" href="#top"><b>Alterna</b><small>школа турецкого</small></a>
@@ -445,7 +484,7 @@ html.gs .rv{transition:none}
     <svg class="deco leaf-b" style="left:4%;top:18%;width:60px;transform:rotate(-20deg)" aria-hidden="true"><use href="#leaf"/></svg>
     <p class="cap center" style="position:relative;z-index:3">Турецкий · A2–B1 · урок на 7 минут</p>
     <h1 class="word" id="word"><span class="w2">KİPLİK</span></h1>
-    <svg class="watch" id="watch" viewBox="0 0 200 230" aria-hidden="true">
+    <div class="watchwrap" id="ww"><svg class="watch" id="watch" viewBox="0 0 200 230" aria-hidden="true">
       <rect x="88" y="0" width="24" height="16" rx="4" fill="#8E8E8E"/><rect x="94" y="14" width="12" height="12" fill="#A9A9A9"/>
       <rect x="142" y="26" width="18" height="12" rx="3" fill="#A9A9A9" transform="rotate(40 151 32)"/>
       <circle cx="100" cy="118" r="92" fill="#D9D9D6"/><circle cx="100" cy="118" r="84" fill="#F8F8F6" stroke="#BDBDB8" stroke-width="2"/>
@@ -454,7 +493,7 @@ html.gs .rv{transition:none}
       <g class="hand" id="hand"><line x1="100" y1="130" x2="100" y2="48" stroke="#E5463A" stroke-width="3" stroke-linecap="round"/></g>
       <circle cx="100" cy="118" r="6" fill="#2a2a28"/>
       <text x="100" y="168" text-anchor="middle" font-family="Montserrat" font-size="10" font-weight="700" fill="#E5463A" letter-spacing="2">7 MIN</text>
-    </svg>
+    </svg><div class="orbit" id="orbit"><span>-ebil</span><span>-eme</span><span>-meli</span><span>lazım</span><span>-elim</span></div></div>
     <p class="tagline">азбука модальности</p>
     <div class="hgrid">
       <div>
@@ -487,27 +526,27 @@ html.gs .rv{transition:none}
     </div>
     <div class="tl" id="tl">
       <div class="rail"><i id="rail"></i></div>
-      <div class="ev"><span class="time"><svg><use href="#i-clock"/></svg>08:30</span>
+      <div class="ev"><svg class="ill" viewBox="0 0 240 84" aria-hidden="true"><rect y="70" width="240" height="14" fill="#E6E2DA"/><circle cx="44" cy="30" r="9" fill="#C08A62"/><rect x="34" y="20" width="20" height="6" rx="2" fill="#1E3550"/><rect x="33" y="40" width="22" height="30" rx="8" fill="#2F4A6B"/><rect x="92" y="56" width="70" height="16" rx="6" fill="#C9A884"/><rect x="97" y="60" width="60" height="8" rx="3" fill="#A88760"/><g class="i-phone"><rect x="115" y="6" width="24" height="40" rx="5" fill="#2A2A28"/><rect x="118" y="11" width="18" height="28" rx="2" fill="#7FB6CB"/></g><path d="M176 40h26m-8-7 8 7-8 7" stroke="#4FAE5C" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="time"><svg><use href="#i-clock"/></svg>08:30</span>
         <p class="q"><span>Telefonu bırak<em class="hl meli">malısınız</em>.</span><button class="say" data-say="Telefonu bırakmalısınız." aria-label="Озвучить"><svg class="ic"><use href="#i-volume-2"/></svg></button></p>
         <p class="ru">Вы должны оставить телефон.<span class="lbl m-meli">-meli</span></p>
         <p class="me">Охранник на входе. Я оставил. Должен — значит должен.</p></div>
-      <div class="ev"><span class="time"><svg><use href="#i-clock"/></svg>09:00</span>
+      <div class="ev"><svg class="ill" viewBox="0 0 240 84" aria-hidden="true"><g transform="translate(78 16)"><rect width="38" height="52" rx="4" fill="#fff" stroke="#DADAD3"/><rect x="6" y="8" width="26" height="3" rx="1.5" fill="#BFD9E6"/><rect x="6" y="15" width="20" height="3" rx="1.5" fill="#DADAD3"/><rect x="6" y="21" width="24" height="3" rx="1.5" fill="#DADAD3"/><rect x="6" y="27" width="18" height="3" rx="1.5" fill="#DADAD3"/><circle cx="27" cy="41" r="6" fill="none" stroke="#5E97B2" stroke-width="2"/><g class="i-ok"><circle cx="36" cy="2" r="9" fill="#4FAE5C"/><path d="M32 2l3 3 5-6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round"/></g></g><g transform="translate(130 16)"><rect width="38" height="52" rx="4" fill="none" stroke="#E5463A" stroke-width="2" stroke-dasharray="5 4"/><text class="i-q" x="19" y="35" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="30" font-weight="600" fill="#E5463A">?</text></g></svg><span class="time"><svg><use href="#i-clock"/></svg>09:00</span>
         <p class="q"><span>Bu belge <em class="hl laz">lazım</em>. Fotokopisi de <em class="hl laz">gerek</em>.</span><button class="say" data-say="Bu belge lazım. Fotokopisi de gerek." aria-label="Озвучить"><svg class="ic"><use href="#i-volume-2"/></svg></button></p>
         <p class="ru">Нужен этот документ. И его копия нужна.<span class="lbl m-laz">lazım · gerek</span></p>
         <p class="me">Окно номер три. Документ у меня был. Копии не было.</p></div>
-      <div class="ev"><span class="time"><svg><use href="#i-clock"/></svg>09:40</span>
+      <div class="ev"><svg class="ill" viewBox="0 0 240 84" aria-hidden="true"><rect y="70" width="240" height="14" fill="#E6E2DA"/><circle cx="52" cy="30" r="9" fill="#8A5A44"/><path d="M43 28c0-12 18-12 18 0v8h-18z" fill="#3B2418"/><rect x="41" y="40" width="22" height="30" rx="8" fill="#C46A8A"/><rect x="88" y="30" width="68" height="40" rx="6" fill="#D9D9D4"/><rect x="84" y="22" width="76" height="12" rx="4" fill="#BDBDB7"/><rect x="98" y="44" width="40" height="5" rx="2" fill="#A9A9A3"/><rect x="102" y="56" width="40" height="10" rx="2" fill="#fff" stroke="#cfcfca"/><circle class="i-led" cx="147" cy="45" r="4" fill="#4FAE5C"/><g class="i-x"><circle cx="182" cy="26" r="13" fill="#E5463A"/><path d="M176 20l12 12m0-12-12 12" stroke="#fff" stroke-width="3" stroke-linecap="round"/></g></svg><span class="time"><svg><use href="#i-clock"/></svg>09:40</span>
         <p class="q"><span>Burada fotokopi çek<em class="hl eme">emezsiniz</em>.</span><button class="say" data-say="Burada fotokopi çekemezsiniz." aria-label="Озвучить"><svg class="ic"><use href="#i-volume-2"/></svg></button></p>
         <p class="ru">Здесь вы не можете сделать копию.<span class="lbl m-eme">-eme</span></p>
         <p class="me">Ксерокс стоял у неё за спиной. Говорю, а он? Говорит, он не для вас.</p></div>
-      <div class="ev"><span class="time"><svg><use href="#i-clock"/></svg>11:15</span>
+      <div class="ev"><svg class="ill" viewBox="0 0 240 84" aria-hidden="true"><rect y="70" width="240" height="14" fill="#E6E2DA"/><g class="i-p"><circle cx="34" cy="32" r="8" fill="#8A5A44"/><rect x="23" y="42" width="22" height="28" rx="9" fill="#4FAE5C"/></g><g class="i-p"><circle cx="68" cy="32" r="8" fill="#C08A62"/><rect x="57" y="42" width="22" height="28" rx="9" fill="#5E97B2"/></g><g class="i-p"><circle cx="102" cy="32" r="8" fill="#5B3A2A"/><rect x="91" y="42" width="22" height="28" rx="9" fill="#F47B2A"/></g><g class="i-p"><circle cx="136" cy="32" r="8" fill="#D7A47E"/><rect x="125" y="42" width="22" height="28" rx="9" fill="#A55A31"/></g><g class="i-p"><circle cx="170" cy="32" r="8" fill="#7A4E36"/><rect x="159" y="42" width="22" height="28" rx="9" fill="#2A2A28"/></g><g class="i-p"><circle cx="204" cy="32" r="8" fill="#B7845E"/><rect x="193" y="42" width="22" height="28" rx="9" fill="#C46A8A"/></g></svg><span class="time"><svg><use href="#i-clock"/></svg>11:15</span>
         <p class="q"><span>Bekle<em class="hl laz">mek zorundasınız</em>.</span><button class="say" data-say="Beklemek zorundasınız." aria-label="Озвучить"><svg class="ic"><use href="#i-volume-2"/></svg></button></p>
         <p class="ru">Вы вынуждены ждать.<span class="lbl m-laz">zorunda</span></p>
         <p class="me">Я сделал копию в соседнем здании. Вернулся. Очередь выросла. Я ждал. Выбора не было. Это и есть zorunda.</p></div>
-      <div class="ev"><span class="time"><svg><use href="#i-clock"/></svg>13:50</span>
+      <div class="ev"><svg class="ill" viewBox="0 0 240 84" aria-hidden="true"><g transform="translate(92 8)"><rect width="48" height="64" rx="6" fill="#fff" stroke="#DADAD3"/><rect width="48" height="16" rx="6" fill="#4FAE5C"/><text x="24" y="44" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="24" font-weight="600" fill="#2A2A28">25</text><text x="24" y="58" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="7" font-weight="700" fill="#4FAE5C" letter-spacing="1">YARIN</text><g class="i-page"><rect width="48" height="64" rx="6" fill="#fff" stroke="#DADAD3"/><rect width="48" height="16" rx="6" fill="#F47B2A"/><text x="24" y="44" text-anchor="middle" font-family="Cormorant Garamond,serif" font-size="24" font-weight="600" fill="#2A2A28">24</text><text x="24" y="58" text-anchor="middle" font-family="Montserrat,sans-serif" font-size="7" font-weight="700" fill="#F47B2A" letter-spacing="1">BUGÜN</text></g></g><path d="M156 40h28m-8-7 8 7-8 7" stroke="#4FAE5C" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="time"><svg><use href="#i-clock"/></svg>13:50</span>
         <p class="q"><span>Yarın gel<em class="hl ebil">ebilirsiniz</em>.</span><button class="say" data-say="Yarın gelebilirsiniz." aria-label="Озвучить"><svg class="ic"><use href="#i-volume-2"/></svg></button></p>
         <p class="ru">Можете прийти завтра.<span class="lbl m-ebil">-ebil</span></p>
         <p class="me">Говорю, а сегодня? Говорит, bugün olmaz. Сегодня никак. Говорю, а завтра точно? Говорит, gelebilirsiniz. Можете. Про «примем» она ничего не сказала.</p></div>
-      <div class="ev"><span class="time"><svg><use href="#i-clock"/></svg>14:00</span>
+      <div class="ev"><svg class="ill" viewBox="0 0 240 84" aria-hidden="true"><g fill="none" stroke="#B9B9B2" stroke-width="2" stroke-linecap="round"><path class="i-st" d="M107 22q-4-5 0-10t0-10"/><path class="i-st" d="M139 22q-4-5 0-10t0-10"/><path class="i-st" d="M123 20q4-5 0-10t0-10"/></g><ellipse cx="109" cy="66" rx="18" ry="4" fill="#D7D7D0"/><ellipse cx="141" cy="66" rx="18" ry="4" fill="#D7D7D0"/><g transform="translate(100 26)"><path d="M0 0h18c0 9-5 13-5 18 0 5 5 9 5 18H0c0-9 5-13 5-18 0-5-5-9-5-18z" fill="#C0391B" stroke="#E8E8E2" stroke-width="2"/><rect x="2" y="1" width="14" height="4" rx="2" fill="#E66A4A"/></g><g transform="translate(132 26)"><path d="M0 0h18c0 9-5 13-5 18 0 5 5 9 5 18H0c0-9 5-13 5-18 0-5-5-9-5-18z" fill="#C0391B" stroke="#E8E8E2" stroke-width="2"/><rect x="2" y="1" width="14" height="4" rx="2" fill="#E66A4A"/></g><circle cx="60" cy="40" r="14" fill="none" stroke="#E7B865" stroke-width="7"/><g fill="#C9A15A"><circle cx="54" cy="31" r="1.2"/><circle cx="66" cy="33" r="1.2"/><circle cx="70" cy="44" r="1.2"/><circle cx="51" cy="47" r="1.2"/></g></svg><span class="time"><svg><use href="#i-clock"/></svg>14:00</span>
         <p class="q"><span>Çay iç<em class="hl elim">elim</em> mi?</span><button class="say" data-say="Çay içelim mi?" aria-label="Озвучить"><svg class="ic"><use href="#i-volume-2"/></svg></button></p>
         <p class="ru">Попьём чаю?<span class="lbl m-elim">-elim</span></p>
         <p class="me">На выходе парень из очереди. Тоже ждал с девяти. Мы пили чай. Это был лучший момент дня.</p></div>
@@ -526,6 +565,19 @@ html.gs .rv{transition:none}
     <a class="mod rv" href="#tariffs" data-go="2"><span class="chip">Модуль 3</span><h4>Долженствование: -meli</h4><ul><li><span><b>Gitmeliyim</b> — я должен идти</span></li><li><span>совет, долг и сожаление -meliydim</span></li></ul></a>
     <a class="mod rv" href="#tariffs" data-go="3"><span class="chip">Модуль 4</span><h4>lazım, gerek, zorunda</h4><ul><li><span><b>Gitmem lazım</b> — мне нужно идти</span></li><li><span>в чём разница — градусник выбора</span></li></ul></a>
     <a class="mod rv" href="#tariffs" data-go="4"><span class="chip">Модуль 5</span><h4>Предложение: -(y)elim</h4><ul><li><span><b>Gidelim mi?</b> — пойдём?</span></li><li><span>и -(y)eyim mi: мне сделать?</span></li></ul></a>
+  </div>
+</div></section>
+
+<!-- FACTORY -->
+<section id="factory" style="padding-top:20px"><div class="wrap">
+  <p class="cap g center">Сборочный цех</p>
+  <h2 class="h2 center split">Как <em>собирается</em> форма</h2>
+  <p class="lead center" style="margin:0 auto">Турецкий — это конструктор. Корень едет по ленте, суффиксы прыгают сверху. Смотрите, как из одного <b>gel</b> получается весь день в миграционной службе.</p>
+  <div class="fac rv">
+    <svg class="deco" style="right:-20px;top:-20px;width:80px" aria-hidden="true"><use href="#orange"/></svg>
+    <div class="fac-stage"><div class="fac-word" id="facWord"></div><div class="belt" id="belt"></div></div>
+    <p class="fac-ru" id="facRu"></p>
+    <div class="tabs" id="facTabs"></div>
   </div>
 </div></section>
 
@@ -614,6 +666,22 @@ html.gs .rv{transition:none}
   <p class="swipe-h">← листайте тарифы →</p>
 </div></section>
 
+<!-- CHAT gelmem / gelemem -->
+<section style="padding-top:20px"><div class="wrap">
+  <p class="cap g center">Одна буква — одна дружба</p>
+  <h2 class="h2 center split">Gelmem или <em>gelemem?</em></h2>
+  <p class="lead center" style="margin:0 auto">Друг зовёт вечером. Вы заняты. Ответьте — и смотрите на его лицо.</p>
+  <div class="chat rv">
+    <div class="face"><svg viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="44" fill="#F3C9A0"/><path d="M14 40c4-26 30-34 46-30s28 16 26 32c-8-14-22-18-36-18S20 30 14 40z" fill="#3B2418"/><circle cx="36" cy="52" r="4" fill="#2A2A28"/><circle cx="64" cy="52" r="4" fill="#2A2A28"/><line id="br1" x1="28" y1="42" x2="42" y2="42" stroke="#3B2418" stroke-width="3.5" stroke-linecap="round"/><line id="br2" x1="58" y1="42" x2="72" y2="42" stroke="#3B2418" stroke-width="3.5" stroke-linecap="round"/><path id="mouth" d="M36 70 Q50 70 64 70" stroke="#8A3B2A" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="28" cy="64" r="5" fill="#F29E8E" opacity=".45"/><circle cx="72" cy="64" r="5" fill="#F29E8E" opacity=".45"/></svg><b>Emre</b></div>
+    <div class="msgs">
+      <div class="bub their">Akşam bize gelir misin?<small>Придёшь к нам вечером?</small></div>
+      <div class="bub mine ghost" id="myMsg">…</div>
+      <div class="bub their ghost" id="reply">…</div>
+    </div>
+    <div class="ans"><button class="btn wh" data-a="0">Gelmem</button><button class="btn" data-a="1">Gelemem, çalışmam lazım</button></div>
+  </div>
+</div></section>
+
 <!-- GAUGE -->
 <section><div class="wrap">
   <p class="cap g">lazım, gerek, zorunda</p>
@@ -625,7 +693,7 @@ html.gs .rv{transition:none}
         <circle cx="120" cy="120" r="78" fill="none" stroke="#EFEFEA" stroke-width="10"/>
         <circle id="garc" cx="120" cy="120" r="78" fill="none" stroke="url(#gRib)" stroke-width="10" stroke-linecap="round" stroke-dasharray="490" stroke-dashoffset="0" transform="rotate(-90 120 120)"/>
       </svg>
-      <div class="pct"><b id="gpct">100%</b><span>выбора</span><small id="gsm">yapabilirim</small></div>
+      <div class="pct"><svg class="lock" id="lock" viewBox="0 0 40 46" aria-hidden="true"><path id="shackle" d="M12 22V14a8 8 0 0 1 16 0v8" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><rect x="6" y="22" width="28" height="22" rx="6" fill="currentColor"/><circle cx="20" cy="32" r="3.2" fill="#fff"/><rect x="18.6" y="33" width="2.8" height="6" rx="1.4" fill="#fff"/></svg><b id="gpct">100%</b><span>выбора</span><small id="gsm">yapabilirim</small></div>
     </div>
     <div>
       <div class="gsteps" id="gsteps">
@@ -980,6 +1048,64 @@ if(G&&window.SplitText){
 /* stopwatch hand: CSS-free rotation via rAF-less GSAP */
 if(G){var ht=gsap.to('#hand',{rotation:360,svgOrigin:'100 118',duration:60,ease:'none',repeat:-1,paused:true});whenVisible($('#watch'),function(){ht.play()},function(){ht.pause()})}
 
+/* ===== visuals ===== */
+/* orbit around stopwatch */
+var orb=$('#orbit');
+if(orb){var os=$$('span',orb);os.forEach(function(s,i){var a=i/os.length*Math.PI*2-Math.PI/2;s.style.left=(50+46*Math.cos(a))+'%';s.style.top=(50+44*Math.sin(a))+'%';if(G)gsap.set(s,{xPercent:-50,yPercent:-50});else{s.style.transform='translate(-50%,-50%)'}});
+  if(G){gsap.from(os,{scale:0,duration:.9,ease:'back.out(2.5)',stagger:.12,delay:.9});var ot=gsap.timeline({repeat:-1,paused:true});ot.to(orb,{rotation:360,duration:40,ease:'none'},0).to(os,{rotation:-360,duration:40,ease:'none'},0);whenVisible($('#ww'),function(){ot.play()},function(){ot.pause()})}}
+/* pointer parallax in hero */
+if(G&&matchMedia('(hover:hover)').matches){var hc=$('#hcard'),qx=gsap.quickTo('#ww','x',{duration:.8,ease:'power3'}),qy=gsap.quickTo('#rib1','x',{duration:1,ease:'power3'}),qz=gsap.quickTo('#rib1','y',{duration:1,ease:'power3'});
+  hc.addEventListener('pointermove',function(e){var r=hc.getBoundingClientRect(),dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;qx(dx*-18);qy(dx*30);qz(dy*24)});
+  hc.addEventListener('pointerleave',function(){qx(0);qy(0);qz(0)})}
+/* falling leaves */
+if(G){var fall=$('#fall'),NL=innerWidth<700?4:7,fl=[];
+  for(var li=0;li<NL;li++){var lf=document.createElementNS('http://www.w3.org/2000/svg','svg');lf.setAttribute('viewBox','0 0 60 30');lf.innerHTML='<use href="#leaf"/>';fall.appendChild(lf);
+    (function(el,k){var dur=16+Math.random()*10,sx=Math.random()*100;gsap.set(el,{left:sx+'%',scale:.6+Math.random()*.7});
+      var t1=gsap.fromTo(el,{y:-40},{y:innerHeight+80,duration:dur,ease:'none',repeat:-1,delay:-Math.random()*dur});
+      var t2=gsap.to(el,{x:'+='+(40+Math.random()*60),rotation:180+Math.random()*180,duration:3+Math.random()*3,ease:'sine.inOut',repeat:-1,yoyo:true});fl.push(t1,t2)})(lf,li)}
+  document.addEventListener('visibilitychange',function(){fl.forEach(function(t){document.hidden?t.pause():t.play()})})}
+/* story illustrations loops */
+if(G){var evs=$$('#tl .ev');
+  var IL=[
+    function(s){return gsap.timeline({repeat:-1,repeatDelay:.8}).fromTo($('.i-phone',s),{y:-6},{y:26,duration:.9,ease:'bounce.out'}).to($('.i-phone',s),{y:-6,duration:.5,ease:'power2.inOut',delay:1})},
+    function(s){return gsap.timeline({repeat:-1,repeatDelay:.6}).fromTo($('.i-ok',s),{scale:0,transformOrigin:'50% 50%'},{scale:1,duration:.6,ease:'back.out(3)'}).fromTo($('.i-q',s),{scale:.6,transformOrigin:'50% 50%'},{scale:1.25,duration:.4,yoyo:true,repeat:3,ease:'sine.inOut'})},
+    function(s){return gsap.timeline({repeat:-1,repeatDelay:.4}).to($('.i-led',s),{attr:{fill:'#E5463A'},duration:.1,repeat:5,yoyo:true}).fromTo($('.i-x',s),{scale:.4,rotation:-30,transformOrigin:'50% 50%'},{scale:1,rotation:0,duration:.6,ease:'back.out(3)'},'<')},
+    function(s){return gsap.timeline({repeat:-1}).to($$('.i-p',s),{y:-5,duration:.35,ease:'sine.inOut',yoyo:true,repeat:1,stagger:.12}).to({},{duration:.6})},
+    function(s){return gsap.timeline({repeat:-1,repeatDelay:1.2}).to($('.i-page',s),{scaleY:0,transformOrigin:'50% 0%',duration:.7,ease:'power2.in',delay:.8}).set($('.i-page',s),{scaleY:1,delay:1.6})},
+    function(s){return gsap.timeline({repeat:-1}).fromTo($$('.i-st',s),{y:6,opacity:0},{y:-8,opacity:1,duration:1.2,ease:'sine.out',stagger:.3}).to($$('.i-st',s),{opacity:0,duration:.6,stagger:.3},'-=.6')}
+  ];
+  evs.forEach(function(ev,i){var s=$('.ill',ev);if(!s||!IL[i])return;var tl=IL[i](s);tl.pause();whenVisible(s,function(){tl.play()},function(){tl.pause()});gsap.from(s,{scale:.92,duration:.9,ease:'back.out(2)',scrollTrigger:{trigger:ev,start:'top 85%'}})})}
+/* factory */
+var FAC=[['-ebil',[['st','gel'],['sf','ebil'],['ps','ir'],['ps','im']],'gelebilirim — я могу прийти'],['-eme',[['st','gel'],['sf','eme'],['ps','m']],'gelemem — я не могу прийти'],['-meli',[['st','git'],['sf','meli'],['ps','yim']],'gitmeliyim — я должен идти'],['lazım',[['st','git'],['sf','me'],['ps','m'],['lz','lazım']],'gitmem lazım — мне нужно идти'],['zorunda',[['st','bekle'],['sf','mek'],['lz','zorunda'],['ps','yım']],'beklemek zorundayım — я вынужден ждать'],['-elim',[['st','gid'],['sf','elim']],'gidelim — пойдём']];
+var fw=$('#facWord'),fi=0,fT=null,belt=$('#belt');
+if(fw){$('#facTabs').innerHTML=FAC.map(function(f,i){return '<button data-i="'+i+'"'+(i?'':' class="on"')+'>'+f[0]+'</button>'}).join('');
+  function facShow(i){fi=i;$$('#facTabs button').forEach(function(b,j){b.classList.toggle('on',j===i)});var f=FAC[i];
+    fw.innerHTML=f[1].map(function(b){return '<span class="blk '+b[0]+'">'+b[1]+'</span>'}).join('');$('#facRu').textContent=f[2];
+    var bl=$$('.blk',fw);
+    if(G){belt.classList.add('run');gsap.fromTo(bl[0],{x:-260},{x:0,duration:.8,ease:'power3.out'});
+      gsap.fromTo(bl.slice(1),{y:-130,rotation:function(k){return k%2?14:-14}},{y:0,rotation:0,duration:.75,ease:'bounce.out',stagger:.22,delay:.55,onComplete:function(){belt.classList.remove('run')}});
+      gsap.fromTo('#facRu',{y:10},{y:0,duration:.5,delay:1.3});}
+  }
+  function facLoop(){if(fT)return;fT=setInterval(function(){facShow((fi+1)%FAC.length)},3800)}
+  $('#facTabs').addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;clearInterval(fT);fT=null;facShow(+b.dataset.i);speak(FAC[+b.dataset.i][2].split(' — ')[0])});
+  facShow(0);
+  if(!RM)whenVisible(fw,function(){facLoop()},function(){clearInterval(fT);fT=null;belt.classList.remove('run')});
+}
+/* chat gelmem / gelemem */
+var CH=[['Gelmem.','Не приду.','Neden?! Küstün mü?','Почему?! Ты обиделся?','M36 74 Q50 62 64 74',14],['Gelemem, çalışmam lazım.','Не могу, мне нужно работать.','Tamam, başka zaman!','Ладно, в другой раз!','M34 66 Q50 82 66 66',-6]];
+$$('.ans [data-a]').forEach(function(b){b.addEventListener('click',function(){var c=CH[+b.dataset.a],m=$('#myMsg'),r=$('#reply');
+  m.innerHTML=c[0]+'<small>'+c[1]+'</small>';m.classList.remove('ghost');r.classList.add('ghost');speak(c[0]);
+  if(G){gsap.fromTo(m,{x:30,scale:.9},{x:0,scale:1,duration:.5,ease:'back.out(2)'})}
+  setTimeout(function(){r.innerHTML=c[2]+'<small>'+c[3]+'</small>';r.classList.remove('ghost');
+    if(G){gsap.fromTo(r,{x:-30,scale:.9},{x:0,scale:1,duration:.5,ease:'back.out(2)'});gsap.to('#mouth',{attr:{d:c[4]},duration:.5,ease:'back.out(2)'});gsap.to('#br1',{rotation:c[5],svgOrigin:'35 42',duration:.4});gsap.to('#br2',{rotation:-c[5],svgOrigin:'65 42',duration:.4});gsap.fromTo('.face svg',{scale:.9},{scale:1,duration:.7,ease:'elastic.out(1,.4)'})}
+    else $('#mouth').setAttribute('d',c[4])},900)})});
+/* tariff tilt (desktop) */
+if(G&&matchMedia('(hover:hover) and (min-width:1100px)').matches){$$('#tfs .tf').forEach(function(c){c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect(),dx=(e.clientX-r.left)/r.width-.5,dy=(e.clientY-r.top)/r.height-.5;gsap.to(c,{rotationY:dx*10,rotationX:-dy*8,y:-6,duration:.4,ease:'power2.out'})});c.addEventListener('pointerleave',function(){gsap.to(c,{rotationY:0,rotationX:0,y:0,duration:.6,ease:'power3.out'})})})}
+/* tablet scroll tilt + final wave */
+if(G){gsap.fromTo('.tablet',{rotation:-7},{rotation:-1,ease:'none',scrollTrigger:{trigger:'.inc',start:'top 90%',end:'center 40%',scrub:true}});
+  var fh=$('#finalH');if(fh){var fwds=$$('.wd',fh);var wv=gsap.to(fwds,{y:-10,duration:.9,ease:'sine.inOut',yoyo:true,repeat:-1,stagger:{each:.15},paused:true});whenVisible(fh,function(){wv.play()},function(){wv.pause()})}
+  $$('.tf li').forEach(function(li){gsap.from(li,{x:-12,duration:.5,ease:'power2.out',scrollTrigger:{trigger:li,start:'top 95%'}})})}
+
 /* tariff → builder */
 $$('[data-build]').forEach(function(b){b.addEventListener('click',function(){B.mod=b.dataset.build;if(B.mod==='elim')B.per=3;render(true);$('#builder').scrollIntoView({behavior:RM?'auto':'smooth'})})});
 $$('.mod[data-go]').forEach(function(a){a.addEventListener('click',function(){var t=$$('#tfs .tf')[+a.dataset.go];setTimeout(function(){var c=$('#tfs');if(c.scrollWidth>c.clientWidth)c.scrollTo({left:t.offsetLeft-(c.clientWidth-t.offsetWidth)/2,behavior:'smooth'});if(G)gsap.fromTo(t,{scale:.96},{scale:1,duration:.8,ease:'elastic.out(1,.5)'})},500)})});
@@ -988,9 +1114,10 @@ $$('.mod[data-go]').forEach(function(a){a.addEventListener('click',function(){va
 var gt='';for(var i=0;i<72;i++){var a=i*5*Math.PI/180;gt+='<line x1="'+(120+Math.sin(a)*96).toFixed(1)+'" y1="'+(120-Math.cos(a)*96).toFixed(1)+'" x2="'+(120+Math.sin(a)*(i%6?102:106)).toFixed(1)+'" y2="'+(120-Math.cos(a)*(i%6?102:106)).toFixed(1)+'" stroke="'+(i%6?'#CFE8D2':'#8CC995')+'" stroke-width="'+(i%6?1.4:2.2)+'"/>'}$('#gticks').innerHTML=gt;
 var GS=[[100,'yapabilirim','Выбор полностью ваш. Можете сделать. Можете не делать. Никто не узнает.','Yapabilirim.'],[60,'yapmam lazım','Надо, но решаете вы. Можно отложить на завтра. Как ксерокс.','Yapmam lazım.'],[35,'yapmalıyım','Вы сами считаете, что так правильно. Совесть — ваш охранник.','Yapmalıyım.'],[0,'yapmak zorundayım','Решили за вас. Виза, начальник, очередь. Выбора нет.','Yapmak zorundayım.']];
 var gcur=0,garc=$('#garc'),gO={v:100};
-function gSet(i,say){gcur=i;$$('#gsteps .gs-btn').forEach(function(b,j){b.classList.toggle('on',j===i)});var d=GS[i];$('#gsm').textContent=d[1];$('#gnote').textContent=d[2];
+function gSet(i,say){gcur=i;$$('#gsteps .gs-btn').forEach(function(b,j){b.classList.toggle('on',j===i)});var d=GS[i];$('#gsm').textContent=d[1];$('#gnote').textContent=d[2];var lk=$('#lock');lk.style.color=d[0]>50?'var(--green)':d[0]>0?'var(--orange)':'#D2452C';if(G)gsap.to('#shackle',{y:-8*d[0]/100,duration:.6,ease:'back.out(2.5)'});
   var to=d[0];if(G){gsap.to(gO,{v:to,duration:.9,ease:'power3.out',onUpdate:function(){$('#gpct').textContent=Math.round(gO.v)+'%';garc.setAttribute('stroke-dashoffset',490*(1-gO.v/100))}})}else{$('#gpct').textContent=to+'%';garc.setAttribute('stroke-dashoffset',490*(1-to/100))}
   if(say)speak(d[3])}
+if(G)gsap.set('#shackle',{y:-8});
 $('#gsteps').addEventListener('click',function(e){var b=e.target.closest('.gs-btn');if(b)gSet(+b.dataset.i,true)});
 var gAuto=false;whenVisible($('.gauge'),function(){if(gAuto||RM)return;gAuto=true;var k=0;var iv=setInterval(function(){k++;if(k>3||gcur!==k-1){clearInterval(iv);return}gSet(k,false)},1600)});
 
